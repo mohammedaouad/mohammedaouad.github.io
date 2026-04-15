@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Aouad — Medical Imaging Engineer</title>
+<title>Mohammed Aouad - Medical Engineer Student at FH Aachen</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -136,7 +136,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo"><span>Mohammed Aouad</span> / portfolio</div>
+  <div class="nav-logo"><span>Mohammed Aouad</span> /  Personal Portfolio</div>
   <div class="nav-links">
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
@@ -145,12 +145,12 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-tag">Medical Imaging · Software · AI</div>
+  <div class="hero-tag">Medical Imaging · Software · AI . Tools</div>
   <h1>Building tools at the<br><strong>intersection of imaging<br>and clinical reality.</strong></h1>
   <p class="hero-desc">
     MSc Medical Engineering student at FH Aachen. I work on image segmentation,
     surgical planning, and CT registration pipelines, motivated by problems I have
-    seen firsthand in the OR and the lab.
+    seen firsthand.
   </p>
   <div class="hero-links">
     <a href="#projects" class="btn btn-primary">View projects</a>
@@ -161,54 +161,6 @@
 
 <section id="projects">
   <div class="section-label">Projects</div>
-
-  <!-- StemVis -->
-  <div class="project-card">
-    <div class="project-header" onclick="toggle(this)">
-      <div class="project-header-left">
-        <div class="project-num">01</div>
-        <div class="project-title">StemVis</div>
-        <div class="project-subtitle">3D surgical planning tool for total hip arthroplasty</div>
-      </div>
-      <div class="project-toggle">+</div>
-    </div>
-    <div class="project-tags">
-      <span class="tag">PyQt6</span><span class="tag">PyVista</span><span class="tag">SimpleITK</span>
-      <span class="tag">TotalSegmentator</span><span class="tag">SciPy</span><span class="tag">NumPy</span>
-    </div>
-    <div class="project-body">
-      <div class="project-body-inner">
-        <p>
-          Replaces manual landmark placement in 3D Slicer with a fully automatic geometric pipeline.
-          Given a femur STL, it fits a sphere to the femoral head for HJC detection, computes the shaft
-          axis via SVD, places the stem tip by CCD angle scanning, and applies a signed-distance neck
-          resection. The full pipeline runs in under 2 seconds on CPU.
-        </p>
-        <p>
-          A DICOM-to-STL preprocessing script using SimpleITK and TotalSegmentator enables a fully
-          automated path from raw CT data to interactive surgical planning without any manual segmentation.
-        </p>
-        <div class="project-meta">
-          <div class="meta-card">
-            <div class="meta-label">Interface</div>
-            <div class="meta-value">Dual-viewport Qt GUI</div>
-          </div>
-          <div class="meta-card">
-            <div class="meta-label">Key method</div>
-            <div class="meta-value">PCA + SVD + sphere fitting</div>
-          </div>
-          <div class="meta-card">
-            <div class="meta-label">Input</div>
-            <div class="meta-value">DICOM or STL</div>
-          </div>
-        </div>
-        <div class="project-actions">
-          <a href="https://github.com/mohammedaouad/StemVisualization" target="_blank" class="btn-sm">GitHub ↗</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- AutoRegCT -->
   <div class="project-card">
     <div class="project-header" onclick="toggle(this)">
@@ -256,6 +208,54 @@
     </div>
   </div>
 
+  <!-- StemVis -->
+  <div class="project-card">
+    <div class="project-header" onclick="toggle(this)">
+      <div class="project-header-left">
+        <div class="project-num">02</div>
+        <div class="project-title">StemVisualization</div>
+        <div class="project-subtitle">3D surgical planning tool for total hip arthroplasty</div>
+      </div>
+      <div class="project-toggle">+</div>
+    </div>
+    <div class="project-tags">
+      <span class="tag">PyQt6</span><span class="tag">PyVista</span><span class="tag">SimpleITK</span>
+      <span class="tag">TotalSegmentator</span><span class="tag">SciPy</span><span class="tag">NumPy</span>
+    </div>
+    <div class="project-body">
+      <div class="project-body-inner">
+        <p>
+          Replaces manual landmark placement in 3D Slicer with a fully automatic geometric pipeline.
+          Given a femur STL, it fits a sphere to the femoral head for HJC detection, computes the shaft
+          axis via SVD, places the stem tip by CCD angle scanning, and applies a signed-distance neck
+          resection. The full pipeline runs in under 2 seconds on CPU.
+        </p>
+        <p>
+          A DICOM-to-STL preprocessing script using SimpleITK and TotalSegmentator enables a fully
+          automated path from raw CT data to interactive surgical planning without any manual segmentation.
+        </p>
+        <div class="project-meta">
+          <div class="meta-card">
+            <div class="meta-label">Interface</div>
+            <div class="meta-value">Dual-viewport Qt GUI</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Key method</div>
+            <div class="meta-value">PCA + SVD + sphere fitting</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Input</div>
+            <div class="meta-value">DICOM or STL</div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://github.com/mohammedaouad/StemVisualization" target="_blank" class="btn-sm">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
   <!-- Brain Tumor Segmentation -->
   <div class="project-card">
     <div class="project-header" onclick="toggle(this)">
