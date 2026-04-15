@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Aouad — Medical Imaging Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --text: #1a1a18;
+    --muted: #6b6b66;
+    --border: #e2e1db;
+    --accent: #1d4e3f;
+    --accent-light: #e8f0ed;
+    --tag-bg: #efefeb;
+    --tag-text: #3a3a36;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,246,243,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 54px;
+  }
+  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  .nav-logo span { color: var(--text); font-weight: 500; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.15s; }
+  .nav-links a:hover { color: var(--text); }
+
+  .hero { padding: 7rem 2.5rem 4rem; max-width: 820px; margin: 0 auto; }
+  .hero-tag {
+    font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--accent); background: var(--accent-light);
+    display: inline-block; padding: 4px 10px; border-radius: 3px; margin-bottom: 1.5rem;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  .hero h1 strong { font-weight: 500; }
+  .hero-desc { font-size: 16px; color: var(--muted); max-width: 560px; margin-bottom: 2rem; line-height: 1.8; }
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em;
+    padding: 9px 18px; border-radius: 4px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text); cursor: pointer;
+    transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn:hover { border-color: var(--text); background: var(--text); color: var(--bg); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary:hover { background: #163d31; border-color: #163d31; color: #fff; }
+
+  section { max-width: 820px; margin: 0 auto; padding: 3rem 2.5rem; }
+  .section-label {
+    font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--muted); margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden; transition: box-shadow 0.2s; margin-bottom: 12px;
+  }
+  .project-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  .project-header {
+    padding: 1.5rem 1.75rem 1.25rem; cursor: pointer;
+    display: flex; align-items: flex-start; gap: 1rem; justify-content: space-between;
+  }
+  .project-header-left { flex: 1; }
+  .project-num { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .project-title { font-size: 17px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .project-subtitle { font-size: 13px; color: var(--muted); }
+  .project-toggle { font-family: var(--mono); font-size: 20px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; margin-top: 2px; line-height: 1; }
+
+  .project-tags { padding: 0 1.75rem 1.25rem; display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 11px; background: var(--tag-bg); color: var(--tag-text); padding: 3px 8px; border-radius: 3px; }
+
+  .project-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .project-body.open { max-height: 700px; }
+  .project-body-inner { padding: 1.25rem 1.75rem 1.75rem; border-top: 1px solid var(--border); }
+  .project-body p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.9rem; }
+
+  .project-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 1.25rem; }
+  .meta-card { background: var(--bg); border-radius: 6px; padding: 0.75rem 1rem; }
+  .meta-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 3px; }
+  .meta-value { font-size: 13px; font-weight: 500; color: var(--text); }
+
+  .project-actions { display: flex; gap: 8px; margin-top: 1.25rem; }
+  .btn-sm {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em;
+    padding: 7px 14px; border-radius: 4px; border: 1px solid var(--border);
+    background: transparent; color: var(--text); cursor: pointer;
+    transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px;
+  }
+  .btn-sm:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; } .about-main { grid-column: span 1 !important; } .project-meta { grid-template-columns: 1fr 1fr; } }
+  .about-block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; }
+  .about-block h3 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.75rem; }
+  .about-block p, .about-block li { font-size: 13.5px; color: var(--muted); line-height: 1.75; }
+  .about-block ul { list-style: none; }
+  .about-block ul li { padding: 2px 0; }
+  .about-block ul li::before { content: '/ '; color: var(--accent); font-family: var(--mono); font-size: 11px; }
+  .about-main { grid-column: span 2; background: var(--accent); color: #fff; border-color: var(--accent); }
+  .about-main h3 { color: rgba(255,255,255,0.55); }
+  .about-main p { color: rgba(255,255,255,0.82); }
+
+  footer {
+    max-width: 820px; margin: 0 auto; padding: 2rem 2.5rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--muted); transition: color 0.15s; }
+  .footer-links a:hover { color: var(--text); }
+
+  .status-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: #3ecf6e; margin-right: 5px;
+    animation: pulse 2.5s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>Mohammed Aouad</span> / portfolio</div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="mailto:medaouad.am@gmail.com">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Medical Imaging · Software · AI</div>
+  <h1>Building tools at the<br><strong>intersection of imaging<br>and clinical reality.</strong></h1>
+  <p class="hero-desc">
+    MSc Medical Engineering student at FH Aachen. I work on image segmentation,
+    surgical planning, and CT registration pipelines, motivated by problems I have
+    seen firsthand in the OR and the lab.
+  </p>
+  <div class="hero-links">
+    <a href="#projects" class="btn btn-primary">View projects</a>
+    <a href="https://github.com/mohammedaouad" target="_blank" class="btn">GitHub ↗</a>
+    <a href="https://linkedin.com/in/mohammed-aouad" target="_blank" class="btn">LinkedIn ↗</a>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="section-label">Projects</div>
+
+  <!-- StemVis -->
+  <div class="project-card">
+    <div class="project-header" onclick="toggle(this)">
+      <div class="project-header-left">
+        <div class="project-num">01</div>
+        <div class="project-title">StemVis</div>
+        <div class="project-subtitle">3D surgical planning tool for total hip arthroplasty</div>
+      </div>
+      <div class="project-toggle">+</div>
+    </div>
+    <div class="project-tags">
+      <span class="tag">PyQt6</span><span class="tag">PyVista</span><span class="tag">SimpleITK</span>
+      <span class="tag">TotalSegmentator</span><span class="tag">SciPy</span><span class="tag">NumPy</span>
+    </div>
+    <div class="project-body">
+      <div class="project-body-inner">
+        <p>
+          Replaces manual landmark placement in 3D Slicer with a fully automatic geometric pipeline.
+          Given a femur STL, it fits a sphere to the femoral head for HJC detection, computes the shaft
+          axis via SVD, places the stem tip by CCD angle scanning, and applies a signed-distance neck
+          resection. The full pipeline runs in under 2 seconds on CPU.
+        </p>
+        <p>
+          A DICOM-to-STL preprocessing script using SimpleITK and TotalSegmentator enables a fully
+          automated path from raw CT data to interactive surgical planning without any manual segmentation.
+        </p>
+        <div class="project-meta">
+          <div class="meta-card">
+            <div class="meta-label">Interface</div>
+            <div class="meta-value">Dual-viewport Qt GUI</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Key method</div>
+            <div class="meta-value">PCA + SVD + sphere fitting</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Input</div>
+            <div class="meta-value">DICOM or STL</div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://github.com/mohammedaouad/StemVisualization" target="_blank" class="btn-sm">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AutoRegCT -->
+  <div class="project-card">
+    <div class="project-header" onclick="toggle(this)">
+      <div class="project-header-left">
+        <div class="project-num">02</div>
+        <div class="project-title">AutoRegCT</div>
+        <div class="project-subtitle">Automatic pre/post-op CT registration for THA</div>
+      </div>
+      <div class="project-toggle">+</div>
+    </div>
+    <div class="project-tags">
+      <span class="tag">SimpleITK</span><span class="tag">TotalSegmentator</span>
+      <span class="tag">Streamlit</span><span class="tag">SciPy</span><span class="tag">pytest</span>
+    </div>
+    <div class="project-body">
+      <div class="project-body-inner">
+        <p>
+          Automates the registration workflow that took 25 to 30 minutes per patient during my bachelor
+          thesis. The pipeline segments the femur from both scans automatically, rigidly registers
+          the pre-op into the post-op space, and computes 7 implant positioning metrics.
+        </p>
+        <p>
+          Mattes mutual information with a 3-level multi-resolution pyramid was chosen for its robustness
+          to metal streak artifacts in post-op CT. Validated on 4 synthetic test cases including a metal
+          artifact simulation, where registration recovered 7.56 degrees of a known 8 degree rotation.
+        </p>
+        <div class="project-meta">
+          <div class="meta-card">
+            <div class="meta-label">Interface</div>
+            <div class="meta-value">CLI + Streamlit GUI</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Metric</div>
+            <div class="meta-value">Mattes MI, 3-level pyramid</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Outputs</div>
+            <div class="meta-value">7 positioning metrics</div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://github.com/mohammedaouad/AutoRegCT" target="_blank" class="btn-sm">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brain Tumor Segmentation -->
+  <div class="project-card">
+    <div class="project-header" onclick="toggle(this)">
+      <div class="project-header-left">
+        <div class="project-num">03</div>
+        <div class="project-title">Brain Tumor Segmentation</div>
+        <div class="project-subtitle">U-Net for binary tumor segmentation on BraTS 2020</div>
+      </div>
+      <div class="project-toggle">+</div>
+    </div>
+    <div class="project-tags">
+      <span class="tag">PyTorch</span><span class="tag">U-Net</span><span class="tag">Grad-CAM</span>
+      <span class="tag">h5py</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+    </div>
+    <div class="project-body">
+      <div class="project-body-inner">
+        <p>
+          Full segmentation pipeline built from scratch on BraTS 2020, covering data loading,
+          U-Net architecture, Dice loss, training loop, inference, and Grad-CAM visualization.
+          Trained on 57,195 axial slices across 369 patients on a T4 GPU in Google Colab.
+        </p>
+        <p>
+          The model reached a Dice loss of 0.2524 after 5 epochs and achieved a Dice score of 0.937
+          on the validation sample. Grad-CAM is implemented with PyTorch hooks on the bottleneck layer
+          and produces a spatial heatmap showing which input regions drove each prediction.
+        </p>
+        <div class="project-meta">
+          <div class="meta-card">
+            <div class="meta-label">Dataset</div>
+            <div class="meta-value">BraTS 2020 (369 patients)</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Dice score</div>
+            <div class="meta-value">0.937 on sample</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Training</div>
+            <div class="meta-value">57k slices, T4 GPU</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blood Pump PID -->
+  <div class="project-card">
+    <div class="project-header" onclick="toggle(this)">
+      <div class="project-header-left">
+        <div class="project-num">04</div>
+        <div class="project-title">Blood Pump PID Control</div>
+        <div class="project-subtitle">System identification and PID controller for an implantable centrifugal pump</div>
+      </div>
+      <div class="project-toggle">+</div>
+    </div>
+    <div class="project-tags">
+      <span class="tag">SciPy</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+      <span class="tag">Control systems</span><span class="tag">Ziegler-Nichols</span>
+    </div>
+    <div class="project-body">
+      <div class="project-body-inner">
+        <p>
+          Models a three-block implantable centrifugal pump (MDU, motor/pump, flow sensor), fits
+          PT1 and PT2 transfer functions to step response data using scipy curve fitting, and designs
+          a PID controller to keep flow stable between 2 and 6 L/min.
+        </p>
+        <p>
+          Auto-tuning uses Ziegler-Nichols via phase crossover from the Bode response. The raw Z-N gain
+          is de-rated by 35% to reduce overshoot. Step response settles in around 30 seconds with less
+          than 5% overshoot. An interactive matplotlib dashboard shows the closed-loop simulation live.
+        </p>
+        <div class="project-meta">
+          <div class="meta-card">
+            <div class="meta-label">Settling time</div>
+            <div class="meta-value">~30 seconds</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Overshoot</div>
+            <div class="meta-value">Under 5%</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Tuning</div>
+            <div class="meta-value">Ziegler-Nichols auto</div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://github.com/simoaouad/blood-pump-control" target="_blank" class="btn-sm">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-block about-main">
+      <h3>Background</h3>
+      <p>
+        MSc Medical Engineering at FH Aachen, targeting graduation around September 2025.
+        My bachelor thesis at the Helmholtz Institute involved comparing 3D Slicer and ImFusion
+        for CT segmentation across 201 THA patients, where I also operated Class C medical devices
+        during cardiac surgeries. That hands-on clinical context shapes how I approach software problems.
+      </p>
+    </div>
+    <div class="about-block">
+      <h3>Focus areas</h3>
+      <ul>
+        <li>Medical image segmentation</li>
+        <li>CT registration pipelines</li>
+        <li>Surgical planning tools</li>
+        <li>Deep learning for imaging</li>
+        <li>Clinical workflow automation</li>
+      </ul>
+    </div>
+    <div class="about-block">
+      <h3>Stack</h3>
+      <ul>
+        <li>Python, SimpleITK, TotalSegmentator</li>
+        <li>PyTorch, NumPy, SciPy</li>
+        <li>PyQt6, PyVista, Streamlit</li>
+        <li>3D Slicer, ImFusion</li>
+        <li>Git, pytest, Docker (in progress)</li>
+      </ul>
+    </div>
+    <div class="about-block" style="grid-column: span 2;">
+      <h3>Currently</h3>
+      <p>
+        <span class="status-dot"></span>
+        Open to Werkstudent or industry thesis positions in Munich, Erlangen, or Aachen.
+        Targeting companies working on medical imaging software: Brainlab, Siemens Healthineers,
+        Materialise, Stryker, ImFusion.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Mohammed Aouad · Aachen, Germany</p>
+  <div class="footer-links">
+    <a href="mailto:medaouad.am@gmail.com">medaouad.am@gmail.com</a>
+    <a href="https://github.com/mohammedaouad" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/mohammed-aouad" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+function toggle(header) {
+  const card = header.closest('.project-card');
+  const body = card.querySelector('.project-body');
+  const tog = header.querySelector('.project-toggle');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.project-body.open').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.project-toggle').forEach(t => { t.textContent = '+'; t.style.transform = ''; });
+  if (!isOpen) {
+    body.classList.add('open');
+    tog.textContent = '+';
+    tog.style.transform = 'rotate(45deg)';
+  }
+}
+</script>
+</body>
+</html>
