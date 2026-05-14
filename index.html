@@ -727,9 +727,21 @@
     <div class="about-text">
       <h2>Software for medical imaging, built from clinical context.</h2>
       <p>
-        I started in the clinic as a cardio technician, running pre-operative validation
-        checks and monitoring perfusion parameters during cardiac surgery. That background
-        shapes how I think about software: it has to be correct, and someone's care depends on it.
+        I am an Master Medical Engineering student at FH Aachen, focused on medical imaging software, CT registration, and surgical planning tools. 
+        My background started in the clinic as a cardio technician, where I had an internship at the RwtH Aachen Uniklinik around pre-operative checks
+        and intraoperative monitoring of the heart lung machine. 
+      </p>
+      <p>
+        My bachelor thesis at the Helmholtz Institute compared 3D Slicer and ImFusion for CT segmentation in total hip arthroplasty using data 
+        from 201 patients. Since October 2024, I have continued at Helmholtz through my master’s practical project, working on femur geometry, 
+        implant positioning, and leg length discrepancy. I build MATLAB and Python prototypes for segmentation, registration, 3D visualization, 
+        and surgical planning. My main interest is software that reduces manual work in clinical image analysis and makes measurements more 
+        reproducible. 
+      </p>
+      <p>
+        In parallel, I work as a HiWi on the Healthy Living Space Institut at RWTH Aachen Uniklinik,
+        where I develop and test Beckhoff TwinCAT 3 control logic for ventilation, heating/cooling, humidity, sensor-based room systems and data analysis. 
+        This gives me practical experience with automation, debugging, and engineering systems that need to run reliably.
       </p>
       <p>
         My bachelor thesis at the Helmholtz Institute compared 3D Slicer and ImFusion
@@ -739,22 +751,18 @@
         tool that helps surgeons identify optimal femoral stem parameters to minimize
         leg length discrepancy.
       </p>
-      <p>
-        I'm targeting companies working on medical imaging software: Brainlab, Siemens
-        Healthineers, Materialise, ImFusion.
-      </p>
     </div>
     <div class="about-meta">
       <div class="meta-item">
         <div class="meta-item-label">Status</div>
-        <div class="meta-item-value">MSc Medical Engineering, FH Aachen &mdash; graduating Sep 2026</div>
+        <div class="meta-item-value">MSc Medical Engineering, FH Aachen</div>
       </div>
       <div class="meta-item">
         <div class="meta-item-label">Location</div>
         <div class="meta-item-value">Aachen, Germany</div>
       </div>
       <div class="meta-item">
-        <div class="meta-item-label">Core stack</div>
+        <div class="meta-item-label">Skills</div>
         <div class="meta-item-value">Python, SimpleITK, PyTorch, TotalSegmentator, Streamlit, MATLAB</div>
       </div>
       <div class="meta-item">
@@ -822,11 +830,11 @@
           </div>
           <div class="project-text-panel">
             <p class="project-desc">
-              Automated pre-op to post-op CT registration for total hip arthroplasty.
+              Automated pre-op to post-op CT registration for total hip arthroplasty (THA).
               The pipeline segments the femur from both scans, rigidly registers pre-op
               into post-op space, and computes 7 implant positioning metrics. No manual
-              landmark placement, no visual alignment. What used to take 25 minutes per
-              patient runs in under 2 minutes.
+              landmark placement, no visual alignment. What used to take 25 minutes to 30 per
+              patient during my bachelor thesis runs now in under 2 minutes.
             </p>
             <p class="project-desc">
               Registration uses Mattes mutual information with a 3-level multi-resolution
@@ -837,11 +845,11 @@
             <div class="project-metrics">
               <div class="metric-row">
                 <span class="metric-key">Metrics computed</span>
-                <span class="metric-val">7 (Dice, axis angle, centroid offset, leg length...)</span>
+                <span class="metric-val">7 (Dice, axis angle, centroid offset, leg length, coverage ratio, transform translation, transform rotation)</span>
               </div>
               <div class="metric-row">
                 <span class="metric-key">Validation</span>
-                <span class="metric-val">4 synthetic THA cases incl. metal artifact</span>
+                <span class="metric-val">4 synthetic THA cases including one case with metal artifact</span>
               </div>
               <div class="metric-row">
                 <span class="metric-key">Interface</span>
@@ -1211,8 +1219,6 @@
         <p class="exp-detail">
           Building a MATLAB tool for surgeons to identify optimal femoral stem parameters
           and minimize leg length discrepancy in total hip arthroplasty.
-          Upcoming: real-data validation on 201 patient CT pairs from an institutional
-          research collaboration.
         </p>
       </div>
     </div>
@@ -1223,10 +1229,9 @@
         <div class="exp-role">HiWi &ndash; Student Research Assistant</div>
         <div class="exp-org">Uniklinik RWTH Aachen</div>
         <p class="exp-detail">
-          Operates a PLC-controlled lab environment (Beckhoff TwinCAT 3) for human
-          thermal comfort experiments. Built a Streamlit dashboard for multi-sensor
-          CSV analysis: PID performance metrics, spatial sensor uniformity, and
-          cross-experiment comparison charts.
+          I support the development and testing of a PLC-controlled lab environment for human thermal comfort experiments. 
+          My work includes Beckhoff TwinCAT 3 control logic for ventilation, heating, humidity, and sensor-based room systems, 
+          PID performance, room uniformity, and experiment comparisons.
         </p>
       </div>
     </div>
@@ -1238,9 +1243,7 @@
         <div class="exp-org">Uniklinik RWTH Aachen</div>
         <p class="exp-detail">
           Configured patient-specific parameters for cardiac surgery, ran pre-operative
-          validation checks, and monitored critical perfusion parameters intraoperatively.
-          That clinical background is the reason the projects here target real clinical
-          problems, not toy datasets.
+          validation checks, and monitored critical perfusion parameters.
         </p>
       </div>
     </div>
@@ -1249,11 +1252,10 @@
       <span class="exp-date">2022 &ndash; 2024</span>
       <div>
         <div class="exp-role">Bachelor Thesis</div>
-        <div class="exp-org">Helmholtz Institute, RWTH Aachen</div>
+        <div class="exp-org">Helmholtz Institute, Aachen</div>
         <p class="exp-detail">
           Compared 3D Slicer and ImFusion for CT segmentation accuracy across 201 THA
-          patients. Supervised by M.Sc. Luisa Berger. The manual bottlenecks in that
-          workflow directly motivated AutoRegCT.
+          patients. Supervised by M.Sc. Luisa Berger.
         </p>
       </div>
     </div>
@@ -1265,10 +1267,10 @@
 <section id="contact">
   <p class="section-label">Contact</p>
   <div class="contact-layout">
-    <h2>Open to roles in medical imaging software from September 2026.</h2>
+    <h2>Open to roles in medical imaging softwar.</h2>
     <p>
       Targeting software engineering and clinical AI positions at medtech companies,
-      with a focus on Munich, Erlangen, and Aachen. Available for internships and
+      Available for internships and
       part-time work before graduation.
     </p>
     <div class="contact-links">
@@ -1281,7 +1283,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-left">Mohammed Aouad &mdash; Aachen, Germany</span>
+  <span class="footer-left">Mohammed Aouad - Aachen, Germany</span>
   <div class="footer-right">
     <a href="mailto:medaouad.am@gmail.com">Email</a>
     <a href="https://github.com/mohammedaouad" target="_blank">GitHub</a>
