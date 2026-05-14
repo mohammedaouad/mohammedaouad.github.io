@@ -1048,36 +1048,10 @@
         <span class="project-toggle">+</span>
       </div>
       <div class="project-body">
-        <div class="project-body-inner">
-          <div class="project-carousel" data-carousel>
-            <div class="carousel-track">
-              <div class="carousel-slide active">
-                <div class="carousel-placeholder">
-                  <span class="placeholder-num">1 / 3</span>
-                  <span class="placeholder-label">Step response</span>
-                </div>
-              </div>
-              <div class="carousel-slide">
-                <div class="carousel-placeholder">
-                  <span class="placeholder-num">2 / 3</span>
-                  <span class="placeholder-label">Bode plot</span>
-                </div>
-              </div>
-              <div class="carousel-slide">
-                <div class="carousel-placeholder">
-                  <span class="placeholder-num">3 / 3</span>
-                  <span class="placeholder-label">Real-time tracking dashboard</span>
-                </div>
-              </div>
-              <div class="carousel-caption"></div>
-            </div>
-            <button class="carousel-btn prev" onclick="carouselStep(this,-1)">&#8592;</button>
-            <button class="carousel-btn next" onclick="carouselStep(this,1)">&#8594;</button>
-            <div class="carousel-dots">
-              <div class="carousel-dot active" onclick="carouselGoto(this,0)"></div>
-              <div class="carousel-dot" onclick="carouselGoto(this,1)"></div>
-              <div class="carousel-dot" onclick="carouselGoto(this,2)"></div>
-            </div>
+        <div class="project-body-inner no-image">
+          .project-body-inner.no-image {
+  grid-template-columns: 1fr;
+}
           </div>
 
           <div class="project-text-panel">
