@@ -3,859 +3,1258 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Mohammed Aouad | Medical Imaging & Surgical Planning Software</title>
+  <title>Mohammed Aouad - Personal Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #080c0a;
-      --text: #f4f2e8;
-      --muted: #a8b6a6;
-      --muted-2: #7f927d;
-      --line: rgba(132, 166, 123, 0.22);
-      --accent: #69a96f;
-      --accent-2: #b9d8b5;
-      --max: 1160px;
+      --bg:       #0d0f0d;
+      --surface:  #141714;
+      --border:   #1e231e;
+      --green:    #4a7c59;
+      --green-lt: #6aad80;
+      --green-dim:#2d4d38;
+      --text:     #d8ddd8;
+      --text-dim: #7a8a7a;
+      --text-faint:#3d4a3d;
+      --white:    #f0f2f0;
+      --mono:     'DM Mono', monospace;
+      --serif:    'DM Serif Display', serif;
+      --sans:     'DM Sans', sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 20% 5%, rgba(105, 169, 111, 0.13), transparent 28%),
-        radial-gradient(circle at 85% 10%, rgba(185, 216, 181, 0.07), transparent 22%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.65;
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 44px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(8, 12, 10, 0.78);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.055);
-    }
-
-    .nav {
-      min-height: 72px;
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,15,13,0.88);
+      backdrop-filter: blur(12px);
     }
 
-    .brand {
-      font-weight: 700;
-      letter-spacing: -0.03em;
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--green-lt);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
+      gap: 2.4rem;
+      list-style: none;
     }
 
-    .nav-links a:hover {
-      color: var(--text);
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
     }
+
+    .nav-links a:hover { color: var(--green-lt); }
 
     .hero {
-      padding: 96px 0 78px;
-    }
-
-    .eyebrow {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      margin-bottom: 22px;
-    }
-
-    h1 {
-      max-width: 900px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3.2rem, 8vw, 7.4rem);
-      line-height: 0.94;
-      letter-spacing: -0.055em;
-      margin-bottom: 30px;
-    }
-
-    .hero-text {
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 1.12rem;
-      margin-bottom: 34px;
-    }
-
-    .hero-actions {
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 5rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 60% 40%, black 30%, transparent 100%);
+      opacity: 0.5;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--green);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--green-lt);
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      font-size: 1rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.5s;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1.2rem;
       flex-wrap: wrap;
-      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.035);
-      color: var(--text);
-      font-weight: 650;
-      transition: 0.2s ease;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid;
+      transition: all 0.2s;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-      background: rgba(255, 255, 255, 0.075);
-      border-color: rgba(105, 169, 111, 0.5);
-    }
-
-    .btn.primary {
-      background: var(--text);
+    .btn-primary {
+      background: var(--green);
       color: var(--bg);
-      border-color: var(--text);
+      border-color: var(--green);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-lt);
+      border-color: var(--green-lt);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-dim);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      color: var(--green-lt);
+      border-color: var(--green-dim);
     }
 
     section {
-      padding: 76px 0;
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .section-kicker {
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--green);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      margin-bottom: 3rem;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 30px;
+      gap: 1rem;
     }
 
-    .section-kicker::after {
-      content: "";
-      width: 120px;
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 80px;
       height: 1px;
-      background: var(--line);
+      background: var(--green-dim);
     }
 
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      max-width: 860px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.4rem, 5vw, 4.6rem);
-      letter-spacing: -0.05em;
-      line-height: 1.02;
-    }
-
-    .section-note {
-      color: var(--muted);
-      max-width: 540px;
-    }
-
-    .projects {
-      display: grid;
-      gap: 26px;
-    }
-
-    .project {
+    .about-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
-      border: 1px solid rgba(255, 255, 255, 0.075);
-      border-radius: 30px;
+      gap: 4rem;
+      max-width: 1100px;
     }
 
-    .project.featured {
-      border-color: rgba(105, 169, 111, 0.42);
-      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.26);
+    .about-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.6rem;
     }
 
-    .project-media {
-      min-height: 440px;
-      background: #0f1411;
-      border-right: 1px solid rgba(255, 255, 255, 0.075);
-      position: relative;
-      display: grid;
-      place-items: center;
-    }
-
-    .project-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #0f1411;
-      padding: 14px;
-    }
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      width: 100%;
-      height: 100%;
-      padding: 14px;
-    }
-
-    .image-grid img {
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #0f1411;
-      object-fit: contain;
-    }
-
-    .image-grid img:first-child {
-      grid-column: 1 / -1;
-    }
-
-    .project-body {
-      padding: 36px;
-    }
-
-    .project-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .number {
-      color: var(--muted-2);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    .about-text p {
+      color: var(--text-dim);
       font-size: 0.95rem;
+      margin-bottom: 1.2rem;
     }
 
-    .badge {
-      color: #061009;
-      background: var(--accent);
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 0.74rem;
-      font-weight: 850;
-      letter-spacing: 0.04em;
+    .about-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .meta-item {
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .meta-item-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      margin-bottom: 0.4rem;
     }
 
-    h3 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(1.7rem, 3vw, 2.55rem);
-      line-height: 1.05;
-      letter-spacing: -0.045em;
-      margin-bottom: 8px;
+    .meta-item-value {
+      font-size: 0.9rem;
+      color: var(--text);
     }
 
-    .subtitle {
-      color: var(--accent-2);
-      font-weight: 650;
-      margin-bottom: 16px;
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 1100px;
     }
 
-    .tags {
+    .project-card {
+      border: 1px solid var(--border);
+      border-top: none;
+      background: var(--surface);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .project-card:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .project-card:hover {
+      border-color: var(--green-dim);
+    }
+
+    .project-header {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 1.6rem 2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .project-num {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+    }
+
+    .project-title-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+
+    .project-card:hover .project-title { color: var(--green-lt); }
+
+    .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
+      gap: 0.4rem;
     }
 
     .tag {
-      font-size: 0.78rem;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 5px 9px;
-      background: rgba(255,255,255,0.025);
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--green);
+      border: 1px solid var(--green-dim);
+      padding: 0.15rem 0.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .project-body p {
-      color: var(--muted);
-      margin-bottom: 14px;
+    .project-toggle {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      color: var(--text-faint);
+      transition: transform 0.3s ease, color 0.2s;
+      width: 28px;
+      text-align: center;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 22px 0;
+    .project-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
     }
 
-    .stat {
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(0,0,0,0.14);
+    .project-body.open {
+      max-height: 900px;
     }
 
-    .stat strong {
-      display: block;
-      font-size: 0.95rem;
-      line-height: 1.25;
-    }
-
-    .stat span {
-      color: var(--muted-2);
-      font-size: 0.78rem;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .about-wrap {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 44px;
-      align-items: start;
-    }
-
-    .about-title {
-      position: sticky;
-      top: 110px;
-    }
-
-    .about-text {
-      display: grid;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 1.06rem;
-    }
-
-    .experience-grid {
+    .project-body-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      gap: 0;
+      border-top: 1px solid var(--border);
     }
 
-    .panel {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.075);
-      border-radius: 28px;
-      padding: 30px;
+    .project-carousel {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
     }
 
-    .panel h3 {
-      font-size: 1.45rem;
-      margin-bottom: 6px;
+    .carousel-track {
+      position: relative;
+      flex: 1;
+      min-height: 320px;
+      background: var(--bg);
     }
 
-    .panel .place {
-      color: var(--accent-2);
-      margin-bottom: 14px;
-      font-weight: 650;
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      background: var(--bg);
     }
 
-    .panel p {
-      color: var(--muted);
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
     }
 
-    .contact {
-      display: grid;
-      grid-template-columns: 1fr auto;
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+      background: var(--bg);
+    }
+
+    .project-card:hover .carousel-slide.active img {
+      opacity: 1;
+    }
+
+    .carousel-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 24px;
-      background: linear-gradient(135deg, rgba(105, 169, 111, 0.14), rgba(185, 216, 181, 0.08));
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 30px;
-      padding: 34px;
+      justify-content: center;
+      gap: 0.7rem;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--bg),
+        var(--bg) 10px,
+        var(--surface) 10px,
+        var(--surface) 20px
+      );
+    }
+
+    .placeholder-num {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--green-dim);
+      letter-spacing: 0.12em;
+    }
+
+    .placeholder-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--text-faint);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(13,15,13,0.7);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      user-select: none;
+    }
+
+    .carousel-btn:hover {
+      color: var(--green-lt);
+      border-color: var(--green-dim);
+      background: rgba(13,15,13,0.92);
+    }
+
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 0 10px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .carousel-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--text-faint);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: var(--green-lt);
+      transform: scale(1.3);
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      padding: 0.35rem 0.8rem;
+      background: rgba(13,15,13,0.75);
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .project-carousel:hover .carousel-caption { opacity: 1; }
+
+    .project-text-panel {
+      padding: 2rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    .project-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+    }
+
+    .metric-key {
+      color: var(--text-faint);
+      min-width: 130px;
+    }
+
+    .metric-val {
+      color: var(--green-lt);
+    }
+
+    .project-footer {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: auto;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 800px;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+      padding-top: 0.2rem;
+    }
+
+    .exp-role {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-org {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+    }
+
+    .exp-detail {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .contact-layout {
+      max-width: 640px;
+    }
+
+    .contact-layout h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-layout p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     footer {
-      padding: 36px 0;
-      color: var(--muted-2);
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .footer-inner {
+      padding: 2rem 3rem;
       display: flex;
       justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
+      align-items: center;
     }
 
-    @media (max-width: 940px) {
-      .project,
-      .about-wrap,
-      .experience-grid,
-      .contact {
-        grid-template-columns: 1fr;
-      }
-
-      .about-title {
-        position: static;
-      }
-
-      .project-media {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.075);
-      }
+    .footer-left {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
     }
 
-    @media (max-width: 680px) {
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 18px 0;
-      }
+    .footer-right {
+      display: flex;
+      gap: 2rem;
+    }
 
-      .nav-links {
-        flex-wrap: wrap;
-      }
+    .footer-right a {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
 
-      .hero {
-        padding-top: 64px;
-      }
+    .footer-right a:hover { color: var(--green-lt); }
 
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-      .stats {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 0 1.5rem 4rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-layout { grid-template-columns: 1fr; gap: 2.4rem; }
+      .project-body-inner { grid-template-columns: 1fr; }
+      .project-carousel { border-right: none; border-bottom: 1px solid var(--border); }
+      .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .nav-links { gap: 1.4rem; }
+    }
 
-      .image-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .image-grid img:first-child {
-        grid-column: auto;
-      }
-
-      .project-media {
-        min-height: 360px;
-      }
-
-      .project-body,
-      .panel,
-      .contact {
-        padding: 24px;
-      }
-
-      .container {
-        width: min(var(--max), calc(100% - 24px));
-      }
+    @media (max-width: 560px) {
+      .project-header { grid-template-columns: 36px 1fr auto; gap: 0.8rem; }
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#">Mohammed Aouad</a>
 
-      <nav class="nav-links">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-        <a href="https://github.com/mohammedaouad" target="_blank" rel="noreferrer">GitHub ↗</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-      </nav>
+<nav>
+  <a class="nav-logo" href="#">M. Aouad</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <p class="hero-tag">Medical Engineering &nbsp;/&nbsp; Aachen, Germany</p>
+  <h1 class="hero-name">Mohammed<br><em>Aouad</em></h1>
+  <p class="hero-desc">
+    MMSc Medical Engineering student at FH Aachen, focused on medical imaging software, CT registration, surgical planning, and segmentation workflows. My work combines engineering, anatomy, and code to build research prototypes that make clinical image analysis more reproducible and practical.
+  </p>
+  <div class="hero-links">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="https://github.com/mohammedaouad" target="_blank" class="btn btn-outline">GitHub</a>
+    <a href="https://linkedin.com/in/mohammed-aouad" target="_blank" class="btn btn-outline">LinkedIn</a>
+  </div>
+</section>
+
+<section id="about">
+  <p class="section-label">About</p>
+  <div class="about-layout">
+    <div class="about-text">
+      <h2>Software for medical imaging, built from clinical context.</h2>
+      <p>
+        I am an Master Medical Engineering student at FH Aachen, focused on medical imaging software, CT registration, and surgical planning tools. 
+        My background started in the clinic as a cardio technician, where I had an internship at the RwtH Aachen Uniklinik around pre-operative checks
+        and intraoperative monitoring of the heart lung machine. 
+      </p>
+      <p>
+        My bachelor thesis at the Helmholtz Institute compared 3D Slicer and ImFusion for CT segmentation in total hip arthroplasty using data 
+        from 201 patients. Since October 2024, I have continued at Helmholtz through my master’s practical project, working on femur geometry, 
+        implant positioning, and leg length discrepancy. I build MATLAB and Python prototypes for segmentation, registration, 3D visualization, 
+        and surgical planning. My main interest is software that reduces manual work in clinical image analysis and makes measurements more 
+        reproducible. 
+      </p>
+      <p>
+        In parallel, I work as a HiWi on the Healthy Living Space Institut at RWTH Aachen Uniklinik,
+        where I develop and test Beckhoff TwinCAT 3 control logic for ventilation, heating/cooling, humidity, sensor-based room systems and data analysis. 
+        This gives me practical experience with automation, debugging, and engineering systems that need to run reliably.
+      </p>
+      <p>
+        My bachelor thesis at the Helmholtz Institute compared 3D Slicer and ImFusion
+        for CT segmentation across 201 THA patients. That work made the manual parts of
+        the workflow obvious, which is what eventually became AutoRegCT. Since October 2024
+        I have been back at Helmholtz for my master's practical project, building a MATLAB
+        tool that helps surgeons identify optimal femoral stem parameters to minimize
+        leg length discrepancy.
+      </p>
     </div>
-  </header>
+    <div class="about-meta">
+      <div class="meta-item">
+        <div class="meta-item-label">Status</div>
+        <div class="meta-item-value">MSc Medical Engineering, FH Aachen</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-item-label">Location</div>
+        <div class="meta-item-value">Aachen, Germany</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-item-label">Skills</div>
+        <div class="meta-item-value">Python, SimpleITK, PyTorch, TotalSegmentator, Streamlit, MATLAB</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-item-label">Domain</div>
+        <div class="meta-item-value">CT registration, surgical planning, tumor segmentation, control systems</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <div class="eyebrow">Medical Engineering / Aachen, Germany</div>
+<section id="projects">
+  <p class="section-label">Projects</p>
+  <div class="projects-grid">
 
-        <h1>Mohammed<br />Aouad</h1>
+    <div class="project-card">
+      <div class="project-header" onclick="toggle(this)">
+        <span class="project-num">01</span>
+        <div class="project-title-row">
+          <span class="project-title">AutoRegCT</span>
+          <div class="project-tags">
+            <span class="tag">SimpleITK</span>
+            <span class="tag">TotalSegmentator</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">CT Registration</span>
+          </div>
+        </div>
+        <span class="project-toggle">+</span>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <div class="project-carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="carousel-slide active">
+                <img src="assets/img/autoregct-1.png" alt="AutoRegCT — Streamlit dashboard" data-caption="Streamlit dashboard — metrics and slice overlay" />
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/img/autoregct-2.png" alt="AutoRegCT — 3D overlay" data-caption="3D registration overlay — pre-op vs post-op femur" />
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/img/autoregct-3.png" alt="AutoRegCT — metal artifact test case" data-caption="Metal artifact test case — Dice 0.87" />
+              </div>
+              <div class="carousel-caption"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="carouselStep(this,-1)">&#8592;</button>
+            <button class="carousel-btn next" onclick="carouselStep(this,1)">&#8594;</button>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" onclick="carouselGoto(this,0)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,1)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,2)"></div>
+            </div>
+          </div>
 
-        <p class="hero-text">
-          MSc Medical Engineering student at FH Aachen, building research prototypes for medical imaging,
-          CT registration, and surgical planning. I focus on tools that turn complex clinical image data
-          into reproducible visualizations, measurements, and workflows.
+          <div class="project-text-panel">
+            <p class="project-desc">
+              Automated pre-op to post-op CT registration for total hip arthroplasty (THA).
+              The pipeline segments the femur from both scans, rigidly registers pre-op
+              into post-op space, and computes 7 implant positioning metrics. No manual
+              landmark placement, no visual alignment. What used to take 25 minutes to 30 per
+              patient during my bachelor thesis runs now in under 2 minutes.
+            </p>
+            <p class="project-desc">
+              Registration uses Mattes mutual information with a 3-level multi-resolution
+              pyramid. Validated on 4 synthetic test cases including a metal artifact
+              simulation: the Mattes MI objective handled intensity corruption from beam
+              hardening with a Dice of 0.87 and rotation recovery within 0.44 degrees.
+            </p>
+            <div class="project-metrics">
+              <div class="metric-row">
+                <span class="metric-key">Metrics computed</span>
+                <span class="metric-val">7 (Dice, axis angle, centroid offset, leg length, coverage ratio, transform translation, transform rotation)</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Validation</span>
+                <span class="metric-val">4 synthetic THA cases including one case with metal artifact</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Interface</span>
+                <span class="metric-val">Streamlit GUI + CLI + JSON export</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/mohammedaouad" target="_blank" class="btn btn-outline">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header" onclick="toggle(this)">
+        <span class="project-num">02</span>
+        <div class="project-title-row">
+          <span class="project-title">DICOMVault</span>
+          <div class="project-tags">
+            <span class="tag">pydicom</span>
+            <span class="tag">SimpleITK</span>
+            <span class="tag">PyQt6</span>
+            <span class="tag">Anonymization</span>
+          </div>
+        </div>
+        <span class="project-toggle">+</span>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <div class="project-carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="carousel-slide active">
+                <img src="assets/img/dicomvault-1.png" alt="DICOMVault — MPR viewer" data-caption="MPR viewer — axial, coronal, sagittal" />
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/img/dicomvault-2.png" alt="DICOMVault — anonymization checklist" data-caption="Anonymization checklist — 21 tag fields" />
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/img/dicomvault-3.png" alt="DICOMVault — segmentation overlay" data-caption="TotalSegmentator overlay on CT" />
+              </div>
+              <div class="carousel-caption"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="carouselStep(this,-1)">&#8592;</button>
+            <button class="carousel-btn next" onclick="carouselStep(this,1)">&#8594;</button>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" onclick="carouselGoto(this,0)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,1)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,2)"></div>
+            </div>
+          </div>
+
+          <div class="project-text-panel">
+            <p class="project-desc">
+              A desktop DICOM viewer and anonymizer built for research workflows.
+              Loads a CT series, shows it in axial, coronal, and sagittal planes with
+              synchronized crosshair navigation, then lists every patient-identifiable
+              tag found in the file. You see exactly what's there before you decide
+              what to strip.
+            </p>
+            <p class="project-desc">
+              De-identification covers 21 tags. UIDs are regenerated on every run so
+              the output has no traceable link to the source. Also supports TotalSegmentator
+              auto-segmentation and RT-Struct overlay, with export to anonymized DICOM or
+              a 9-panel PNG report.
+            </p>
+            <div class="project-metrics">
+              <div class="metric-row">
+                <span class="metric-key">Tags de-identified</span>
+                <span class="metric-val">21 patient-identifiable fields + UID regeneration</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Segmentation</span>
+                <span class="metric-val">TotalSegmentator auto + RT-Struct manual load</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Export</span>
+                <span class="metric-val">Anonymized DICOM series + 9-panel PNG report</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/mohammedaouad" target="_blank" class="btn btn-outline">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header" onclick="toggle(this)">
+        <span class="project-num">03</span>
+        <div class="project-title-row">
+          <span class="project-title">StemVis</span>
+          <div class="project-tags">
+            <span class="tag">PyVista</span>
+            <span class="tag">PyQt6</span>
+            <span class="tag">SciPy</span>
+            <span class="tag">Surgical Planning</span>
+          </div>
+        </div>
+        <span class="project-toggle">+</span>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <div class="project-carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="carousel-slide active">
+                <img src="assets/img/stemvis-1.png" alt="StemVis — dual viewport GUI" data-caption="Dual viewport — pre-op and post-resection" />
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/img/stemvis-2.png" alt="StemVis — HJC sphere fit" data-caption="Hip joint center — sphere fitting result" />
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/img/stemvis-3.png" alt="StemVis — neck resection" data-caption="Neck resection — live CCD angle control" />
+              </div>
+              <div class="carousel-caption"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="carouselStep(this,-1)">&#8592;</button>
+            <button class="carousel-btn next" onclick="carouselStep(this,1)">&#8594;</button>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" onclick="carouselGoto(this,0)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,1)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,2)"></div>
+            </div>
+          </div>
+
+          <div class="project-text-panel">
+            <p class="project-desc">
+              3D surgical planning tool for total hip arthroplasty. Takes a femur STL
+              and automatically computes the hip joint center via sphere fitting, the shaft
+              axis via PCA and SVD, and the stem tip position from the CCD angle. A dual-viewport
+              GUI shows the pre-resection and post-resection femur side by side.
+            </p>
+            <p class="project-desc">
+              CCD angle and neck offset are adjustable via sliders, with live 3D feedback.
+              The full pipeline runs in under 2 seconds on CPU. Works end-to-end from raw
+              DICOM through a CT-to-STL pipeline using TotalSegmentator.
+            </p>
+            <div class="project-metrics">
+              <div class="metric-row">
+                <span class="metric-key">HJC detection</span>
+                <span class="metric-val">Sphere fit, radius ~22-25 mm (anatomically consistent)</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Planning controls</span>
+                <span class="metric-val">CCD angle (115-135 degrees), neck offset (+-20 mm)</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Pipeline</span>
+                <span class="metric-val">DICOM to STL to 3D plan, fully automated</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/mohammedaouad/StemVisualization" target="_blank" class="btn btn-outline">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header" onclick="toggle(this)">
+        <span class="project-num">04</span>
+        <div class="project-title-row">
+          <span class="project-title">Brain Tumor Segmentation</span>
+          <div class="project-tags">
+            <span class="tag">PyTorch</span>
+            <span class="tag">U-Net</span>
+            <span class="tag">BraTS 2020</span>
+            <span class="tag">Grad-CAM</span>
+          </div>
+        </div>
+        <span class="project-toggle">+</span>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <div class="project-carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="carousel-slide active">
+                <img src="assets/img/brats.png" alt="BraTS — 4-panel prediction figure" data-caption="4-panel output — FLAIR, prediction, ground truth, Grad-CAM" />
+              </div>
+              <div class="carousel-caption"></div>
+            </div>
+          </div>
+
+          <div class="project-text-panel">
+            <p class="project-desc">
+              Binary brain tumor segmentation on BraTS 2020 using a 3-level U-Net trained
+              from scratch. Every component written manually: data loading from HDF5,
+              model architecture, Dice loss, training loop, inference, and Grad-CAM
+              visualization via PyTorch hooks on the bottleneck layer.
+            </p>
+            <p class="project-desc">
+              Trained on Google Colab T4 GPU across 5 epochs on 57,195 axial slices.
+              The output shows FLAIR input, predicted mask with tumor volume estimate,
+              ground truth, and a Grad-CAM heatmap showing which image regions drove
+              the prediction.
+            </p>
+            <div class="project-metrics">
+              <div class="metric-row">
+                <span class="metric-key">Dice score</span>
+                <span class="metric-val">0.937 on sample slice</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Training data</span>
+                <span class="metric-val">57,195 slices, 369 patients (BraTS 2020)</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Explainability</span>
+                <span class="metric-val">Grad-CAM via manual PyTorch hooks</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/mohammedaouad" target="_blank" class="btn btn-outline">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header" onclick="toggle(this)">
+        <span class="project-num">05</span>
+        <div class="project-title-row">
+          <span class="project-title">Blood Pump PID Control</span>
+          <div class="project-tags">
+            <span class="tag">SciPy</span>
+            <span class="tag">System ID</span>
+            <span class="tag">PID</span>
+            <span class="tag">Control Theory</span>
+          </div>
+        </div>
+        <span class="project-toggle">+</span>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <div class="project-carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="carousel-slide active">
+                <div class="carousel-placeholder">
+                  <span class="placeholder-num">1 / 3</span>
+                  <span class="placeholder-label">Step response</span>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="carousel-placeholder">
+                  <span class="placeholder-num">2 / 3</span>
+                  <span class="placeholder-label">Bode plot</span>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="carousel-placeholder">
+                  <span class="placeholder-num">3 / 3</span>
+                  <span class="placeholder-label">Real-time tracking dashboard</span>
+                </div>
+              </div>
+              <div class="carousel-caption"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="carouselStep(this,-1)">&#8592;</button>
+            <button class="carousel-btn next" onclick="carouselStep(this,1)">&#8594;</button>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" onclick="carouselGoto(this,0)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,1)"></div>
+              <div class="carousel-dot" onclick="carouselGoto(this,2)"></div>
+            </div>
+          </div>
+
+          <div class="project-text-panel">
+            <p class="project-desc">
+              System identification and PID controller design for an implantable centrifugal
+              blood pump. Models three subsystems (MDU, motor/pump, flow sensor) using PT1
+              and PT2 transfer functions fitted to step response data via SciPy curve fitting.
+            </p>
+            <p class="project-desc">
+              The PID uses Ziegler-Nichols auto-tuning with a 35% Kp de-rating to reduce
+              overshoot, and includes anti-windup via integral reversal on saturation.
+              A real-time matplotlib dashboard shows the step response, tracking, Bode plot,
+              and bandwidth sweep.
+            </p>
+            <div class="project-metrics">
+              <div class="metric-row">
+                <span class="metric-key">Settling time</span>
+                <span class="metric-val">~30 s, less than 5% overshoot</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Tuned gains</span>
+                <span class="metric-val">Kp 2.06, Ti 3.41 s, Td 0.85 s</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-key">Control range</span>
+                <span class="metric-val">2-6 L/min flow rate tracking</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/simoaouad/blood-pump-control" target="_blank" class="btn btn-outline">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <span class="exp-date">Oct 2024 &ndash; present</span>
+      <div>
+        <div class="exp-role">Master's Practical Project</div>
+        <div class="exp-org">Helmholtz Institute, RWTH Aachen</div>
+        <p class="exp-detail">
+          Building a MATLAB tool for surgeons to identify optimal femoral stem parameters
+          and minimize leg length discrepancy in total hip arthroplasty.
         </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="#projects">View projects</a>
-          <a class="btn" href="https://github.com/mohammedaouad" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a class="btn" href="mailto:medaouad.am@gmail.com">Contact</a>
-        </div>
       </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-kicker">Projects</div>
-
-        <div class="section-head">
-          <h2>Selected work in imaging software and surgical planning.</h2>
-          <p class="section-note">
-            Research prototypes and engineering projects built with Python, MATLAB, medical imaging libraries,
-            and control-system tools.
-          </p>
-        </div>
-
-        <div class="projects">
-
-          <article class="project featured">
-            <div class="project-media">
-              <div class="image-grid">
-                <img src="images/autoregct-overlay.png" alt="AutoRegCT 3D registration overlay" />
-                <img src="images/autoregct-slice-overlay.png" alt="AutoRegCT slice overlay views" />
-                <img src="images/autoregct-metrics.png" alt="AutoRegCT registration metrics" />
-              </div>
-            </div>
-
-            <div class="project-body">
-              <div class="project-top">
-                <span class="number">01</span>
-                <span class="badge">Featured</span>
-              </div>
-
-              <h3>AutoRegCT</h3>
-              <div class="subtitle">Automatic pre/post-op CT registration for total hip arthroplasty</div>
-
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">SimpleITK</span>
-                <span class="tag">TotalSegmentator</span>
-                <span class="tag">Streamlit</span>
-                <span class="tag">pytest</span>
-              </div>
-
-              <p>
-                Research prototype for automatic comparison of pre-operative and post-operative CT data in THA.
-                The pipeline combines femur segmentation, rigid registration, overlay visualization, and quantitative
-                registration metrics.
-              </p>
-
-              <p>
-                The goal is to reduce manual alignment and measurement work and make the evaluation more reproducible.
-                Synthetic test cases are used to validate whether known rotations and translations can be recovered.
-              </p>
-
-              <div class="stats">
-                <div class="stat"><strong>3D + slice views</strong><span>Validation</span></div>
-                <div class="stat"><strong>7 metrics</strong><span>Output</span></div>
-                <div class="stat"><strong>Mattes MI</strong><span>Registration</span></div>
-              </div>
-
-              <div class="project-links">
-                <a class="btn" href="https://github.com/mohammedaouad/AutoRegCT" target="_blank" rel="noreferrer">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project">
-            <div class="project-media">
-              <div class="image-grid">
-                <img src="images/stemvisualization-1.png" alt="StemVisualization GUI" />
-                <img src="images/stemvisualization-2.png" alt="StemVisualization femur geometry" />
-                <img src="images/stemvisualization-3.png" alt="StemVisualization resection or CCD result" />
-              </div>
-            </div>
-
-            <div class="project-body">
-              <div class="project-top">
-                <span class="number">02</span>
-              </div>
-
-              <h3>StemVisualization</h3>
-              <div class="subtitle">3D surgical planning prototype for femoral stem placement</div>
-
-              <div class="tags">
-                <span class="tag">PyQt6</span>
-                <span class="tag">PyVista</span>
-                <span class="tag">SimpleITK</span>
-                <span class="tag">SciPy</span>
-                <span class="tag">NumPy</span>
-              </div>
-
-              <p>
-                Prototype tool for visualizing femur geometry and stem placement in total hip arthroplasty.
-                It estimates the hip joint center, computes the shaft axis, places a stem line, and supports
-                CCD-angle and neck-offset exploration.
-              </p>
-
-              <p>
-                The project connects raw CT-derived geometry with interactive planning views, making it useful
-                for exploring implant positioning and leg length discrepancy effects.
-              </p>
-
-              <div class="stats">
-                <div class="stat"><strong>Dual viewport</strong><span>Qt GUI</span></div>
-                <div class="stat"><strong>HJC + axis</strong><span>Geometry</span></div>
-                <div class="stat"><strong>DICOM/STL</strong><span>Input</span></div>
-              </div>
-
-              <div class="project-links">
-                <a class="btn" href="https://github.com/mohammedaouad/StemVisualization" target="_blank" rel="noreferrer">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project">
-            <div class="project-media">
-              <div class="image-grid">
-                <img src="images/brain-1.png" alt="Brain tumor segmentation input MRI" />
-                <img src="images/brain-2.png" alt="Brain tumor predicted mask" />
-                <img src="images/brain-3.png" alt="Brain tumor Grad-CAM or comparison" />
-              </div>
-            </div>
-
-            <div class="project-body">
-              <div class="project-top">
-                <span class="number">03</span>
-              </div>
-
-              <h3>Brain Tumor Segmentation</h3>
-              <div class="subtitle">U-Net segmentation pipeline using BraTS 2020 data</div>
-
-              <div class="tags">
-                <span class="tag">PyTorch</span>
-                <span class="tag">U-Net</span>
-                <span class="tag">Grad-CAM</span>
-                <span class="tag">h5py</span>
-                <span class="tag">Matplotlib</span>
-              </div>
-
-              <p>
-                Medical deep learning project covering data loading, U-Net architecture, Dice loss,
-                training, inference, and visual explanation with Grad-CAM.
-              </p>
-
-              <p>
-                Built to understand the full segmentation workflow rather than only running a pretrained model.
-                The project demonstrates applied deep learning for medical image analysis.
-              </p>
-
-              <div class="stats">
-                <div class="stat"><strong>57k slices</strong><span>Training data</span></div>
-                <div class="stat"><strong>369 patients</strong><span>BraTS 2020</span></div>
-                <div class="stat"><strong>Grad-CAM</strong><span>Explainability</span></div>
-              </div>
-
-              <div class="project-links">
-                <a class="btn" href="https://github.com/mohammedaouad/brain-tumor-segmentation" target="_blank" rel="noreferrer">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project">
-            <div class="project-media">
-              <div class="image-grid">
-                <img src="images/pump-1.png" alt="Blood pump control step response" />
-                <img src="images/pump-2.png" alt="Blood pump PID closed-loop response" />
-                <img src="images/pump-3.png" alt="Blood pump Bode or transfer function plot" />
-              </div>
-            </div>
-
-            <div class="project-body">
-              <div class="project-top">
-                <span class="number">04</span>
-              </div>
-
-              <h3>Blood Pump PID Control</h3>
-              <div class="subtitle">System identification and PID control for a centrifugal blood pump model</div>
-
-              <div class="tags">
-                <span class="tag">SciPy</span>
-                <span class="tag">NumPy</span>
-                <span class="tag">Matplotlib</span>
-                <span class="tag">Control Systems</span>
-                <span class="tag">Ziegler-Nichols</span>
-              </div>
-
-              <p>
-                Models a three-block implantable centrifugal pump, fits PT1 and PT2 transfer functions
-                to step-response data, and designs a PID controller to keep flow stable.
-              </p>
-
-              <p>
-                The project connects medical device context with classical control engineering:
-                model fitting, controller tuning, overshoot reduction, and closed-loop response analysis.
-              </p>
-
-              <div class="stats">
-                <div class="stat"><strong>~30 s</strong><span>Settling time</span></div>
-                <div class="stat"><strong>&lt;5%</strong><span>Overshoot</span></div>
-                <div class="stat"><strong>Z-N</strong><span>Tuning</span></div>
-              </div>
-
-              <div class="project-links">
-                <a class="btn" href="https://github.com/mohammedaouad/blood-pump-control" target="_blank" rel="noreferrer">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-kicker">About</div>
-
-        <div class="about-wrap">
-          <div class="about-title">
-            <h2>Software for medical imaging, built from clinical context.</h2>
-          </div>
-
-          <div class="about-text">
-            <p>
-              I am an MSc Medical Engineering student at FH Aachen, focused on medical imaging software,
-              CT registration, and surgical planning tools.
-            </p>
-
-            <p>
-              My background started in the clinic as a cardio technician, where I worked around pre-operative
-              checks and intraoperative monitoring. That experience still influences how I approach software:
-              the result has to be understandable, reliable, and useful in a real workflow.
-            </p>
-
-            <p>
-              My bachelor thesis at the Helmholtz Institute compared 3D Slicer and ImFusion for CT segmentation
-              in total hip arthroplasty using data from 201 patients. Since October 2024, I have continued at
-              Helmholtz through my master’s practical project, working on femur geometry, implant positioning,
-              and leg length discrepancy.
-            </p>
-
-            <p>
-              I build MATLAB and Python prototypes for segmentation, registration, 3D visualization,
-              and surgical planning. My main interest is software that reduces manual work in clinical image
-              analysis and makes measurements more reproducible.
-            </p>
-
-            <p>
-              In parallel, I work as a HiWi on the Healthy Living Space project, where I develop and test
-              Beckhoff TwinCAT 3 control logic for ventilation, heating, humidity, and sensor-based room systems.
-              This gives me practical experience with automation, debugging, and engineering systems that need
-              to run reliably.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="container">
-        <div class="section-kicker">Experience</div>
-
-        <div class="section-head">
-          <h2>Research, clinical context, and engineering systems.</h2>
-          <p class="section-note">
-            Experience across medical imaging research, clinical monitoring, and PLC-controlled laboratory systems.
-          </p>
-        </div>
-
-        <div class="experience-grid">
-          <div class="panel">
-            <h3>Master’s Practical Project</h3>
-            <div class="place">Helmholtz Institute Aachen</div>
-            <p>
-              Working on femur geometry, implant positioning, and leg length discrepancy in total hip arthroplasty.
-              Building MATLAB and Python tools for 3D visualization, pre/post-op comparison, and surgical planning research.
-            </p>
-          </div>
-
-          <div class="panel">
-            <h3>HiWi – Student Research Assistant</h3>
-            <div class="place">Uniklinik RWTH Aachen</div>
-            <p>
-              Supporting the Healthy Living Space project by developing and testing Beckhoff TwinCAT 3 control logic
-              for a PLC-controlled lab environment. The system manages ventilation, heating, humidity, and sensor-based
-              room conditions for human thermal comfort experiments. I also built a Streamlit dashboard to analyze
-              multi-sensor CSV data, PID behavior, room uniformity, and cross-experiment results.
-            </p>
-          </div>
-
-          <div class="panel">
-            <h3>Bachelor Thesis</h3>
-            <div class="place">Helmholtz Institute Aachen</div>
-            <p>
-              Compared 3D Slicer and ImFusion for CT segmentation in total hip arthroplasty using a dataset of
-              201 patients. The work focused on segmentation workflow, timing, usability, and practical differences
-              between manual software-based approaches.
-            </p>
-          </div>
-
-          <div class="panel">
-            <h3>Clinical Background</h3>
-            <div class="place">Cardio Technician</div>
-            <p>
-              Worked around pre-operative validation checks and perfusion parameter monitoring during cardiac surgery.
-              This clinical experience shaped my interest in practical, reliable tools for medical workflows.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="contact">
-          <div>
-            <h2>Contact</h2>
-            <p class="section-note">
-              Based in Aachen, Germany. Interested in Werkstudent roles, internships, research engineering,
-              and thesis opportunities in medical imaging software, surgical planning, registration, and segmentation.
-            </p>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn primary" href="mailto:medaouad.am@gmail.com">Email me</a>
-            <a class="btn" href="https://github.com/mohammedaouad" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <span>Mohammed Aouad · Aachen, Germany</span>
-      <span>Medical Imaging · Surgical Planning · Software</span>
     </div>
-  </footer>
+
+    <div class="exp-item">
+      <span class="exp-date">2024 &ndash; present</span>
+      <div>
+        <div class="exp-role">HiWi &ndash; Student Research Assistant</div>
+        <div class="exp-org">Uniklinik RWTH Aachen</div>
+        <p class="exp-detail">
+          I support the development and testing of a PLC-controlled lab environment for human thermal comfort experiments. 
+          My work includes Beckhoff TwinCAT 3 control logic for ventilation, heating, humidity, and sensor-based room systems, 
+          PID performance, room uniformity, and experiment comparisons.
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">2022 &ndash; 2023</span>
+      <div>
+        <div class="exp-role">Cardio Technician</div>
+        <div class="exp-org">Uniklinik RWTH Aachen</div>
+        <p class="exp-detail">
+          Configured patient-specific parameters for cardiac surgery, ran pre-operative
+          validation checks, and monitored critical perfusion parameters.
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">2024</span>
+      <div>
+        <div class="exp-role">Bachelor Thesis</div>
+        <div class="exp-org">Helmholtz Institute, Aachen</div>
+        <p class="exp-detail">
+          Compared 3D Slicer and ImFusion for CT segmentation accuracy across 201 THA
+          patients. Supervised by M.Sc. Luisa Berger.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <div class="contact-layout">
+    <h2>Open to roles in medical imaging software.</h2>
+    <p>
+      Targeting software engineering and clinical AI positions at medtech companies,
+      Available for internships and
+      part-time work before graduation.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:medaouad.am@gmail.com" class="btn btn-primary">medaouad.am@gmail.com</a>
+      <a href="https://github.com/mohammedaouad" target="_blank" class="btn btn-outline">GitHub</a>
+      <a href="https://linkedin.com/in/mohammed-aouad" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">Mohammed Aouad - Aachen, Germany</span>
+  <div class="footer-right">
+    <a href="mailto:medaouad.am@gmail.com">Email</a>
+    <a href="https://github.com/mohammedaouad" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/mohammed-aouad" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+function toggle(header) {
+  const card = header.closest('.project-card');
+  const body = card.querySelector('.project-body');
+  const tog  = header.querySelector('.project-toggle');
+  const isOpen = body.classList.contains('open');
+
+  document.querySelectorAll('.project-body.open').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.project-toggle').forEach(t => {
+    t.textContent = '+';
+    t.style.transform = '';
+  });
+
+  if (!isOpen) {
+    body.classList.add('open');
+    tog.textContent = '+';
+    tog.style.transform = 'rotate(45deg)';
+  }
+}
+
+function getCarousel(btn) {
+  return btn.closest('[data-carousel]');
+}
+
+function carouselShow(carousel, idx) {
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  const dots   = carousel.querySelectorAll('.carousel-dot');
+  const cap    = carousel.querySelector('.carousel-caption');
+  const n = slides.length;
+
+  if (!n) return;
+
+  idx = ((idx % n) + n) % n;
+
+  slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+  dots.forEach((d, i)   => d.classList.toggle('active', i === idx));
+
+  const activeImg = slides[idx].querySelector('img');
+  if (cap) cap.textContent = activeImg ? (activeImg.dataset.caption || '') : '';
+
+  carousel.dataset.current = idx;
+}
+
+function carouselStep(btn, dir) {
+  const c = getCarousel(btn);
+  carouselShow(c, parseInt(c.dataset.current || 0) + dir);
+}
+
+function carouselGoto(dot, idx) {
+  carouselShow(dot.closest('[data-carousel]'), idx);
+}
+
+document.querySelectorAll('[data-carousel]').forEach(c => {
+  c.dataset.current = 0;
+  carouselShow(c, 0);
+});
+</script>
 </body>
 </html>
